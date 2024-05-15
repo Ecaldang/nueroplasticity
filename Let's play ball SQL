@@ -18,3 +18,16 @@ FROM `bigquery-public-data.baseball.schedules`
 WHERE duration_minutes > 200
 Group by homeTeamname;
 
+---find the average game duration in minutes
+
+SELECT avg(duration_minutes)
+FROM `bigquery-public-data.baseball.schedules`
+
+---Provide hometeams that have games over avg duration and order them from least to greatest a  mount count.
+ Select 
+homeTeamname,
+count(*) as games
+FROM `bigquery-public-data.baseball.schedules`
+WHERE duration_minutes > 184
+Group by homeTeamname
+ORDER by homeTeamName ASC;
