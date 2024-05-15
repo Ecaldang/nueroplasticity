@@ -1,9 +1,0 @@
------This project includes only using  500 employees
-SELECT *
-  FROM `bigquery-public-data.google_dei.dar_intersectional_attrition_index` LIMIT 500
-
-
-
-----TASK
---Using Group by functions
---Find ethnic identification of both men and then women.

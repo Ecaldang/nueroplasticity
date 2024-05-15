@@ -1,0 +1,4 @@
+SELECT 
+count(*)
+FROM `bigquery-public-data.baseball.schedules`
+where duration_minutes > 100;
