@@ -1,0 +1,17 @@
+-----Swapping Strings
+
+v1 = "first string"
+v2 = "second string"
+
+
+temp= v1
+v1= v2
+v2= temp
+
+
+Print(v1)
+second string
+
+print(v2)
+first string
+---- IF else statements and application
