@@ -1,0 +1,76 @@
+SELECT *
+FROM `CollegeExams.ExamResults` ;
+
+---- This query provides max  of each subject
+SELECT   
+MAX(Critical_Reading_Mean),
+MAX(Mathematics_Mean),
+MAx(Writing_Mean)
+FROM `CollegeExams.ExamResults` ;
+
+---- This query provides min of each subject
+SELECT   
+MIN(Critical_Reading_Mean), 
+MIN(Mathematics_Mean),
+MIN(Writing_Mean)
+FROM `CollegeExams.ExamResults` ;
+
+
+---This demonstrates stacked results for minimum scores in each subject and DBN, School names
+
+
+SELECT DBN, School_Name, Critical_Reading_Mean
+FROM `CollegeExams.ExamResults`
+WHERE Critical_Reading_Mean = 291 
+UNION ALL
+SELECT DBN, School_Name,  Mathematics_Mean
+FROM `CollegeExams.ExamResults`
+WHERE Mathematics_Mean = 281
+UNION ALL
+SELECT DBN,School_Name, Writing_Mean
+FROM  `CollegeExams.ExamResults`
+WHERE Writing_Mean = 285;---Locate Top performing Schools in REading and math
+--1. Join reading and math tables
+
+
+SELECT 
+School_Name, Critical_Reading_Mean
+FROM `CollegeExams.ExamResults`
+WHERE Critical_Reading_Mean  > ( SELECT
+ avg(critical_reading_mean)
+FROM `CollegeExams.ExamResults`)
+
+SELECT 
+School_Name, Mathematics_Mean 
+FROM `CollegeExams.ExamResults`
+WHERE Mathematics_Mean  > ( SELECT
+ avg(Mathematics_Mean )
+FROM `CollegeExams.ExamResults`)
+
+
+-----
+
+
+
+With TRS as 
+(
+  SELECT 
+  School_Name, Critical_Reading_Mean
+  FROM `CollegeExams.ExamResults`
+  WHERE Critical_Reading_Mean  > ( SELECT
+                                      avg(critical_reading_mean)
+                                    FROM `CollegeExams.ExamResults`)
+)
+SELECT *
+FROM TRS 
+JOIN 
+(SELECT
+  School_Name, Mathematics_Mean 
+  FROM `CollegeExams.ExamResults`
+  WHERE Mathematics_Mean  > ( SELECT
+
+                                  avg(Mathematics_Mean )
+                              FROM `CollegeExams.ExamResults`)) TMS
+ON TRS.School_Name = TMS.School_name
+LIMIT 100;
+--- WE can now see top 100 performing school for reading and math
