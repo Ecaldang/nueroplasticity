@@ -14,4 +14,22 @@ second string
 
 print(v2)
 first string
----- IF else statements and application
+---- IF else statements and applications
+e = 3
+f = 4
+if e < f:
+    print(" e is less than f")
+elif e==f:
+    print("e is eequal to f")
+else:
+    print("e is greater than f")
+--results : e is less than f
+
+
+----Combining Strings
+
+name = "bro'
+Print = ("Hello" + name)
+Hello Bro
+
+-----
