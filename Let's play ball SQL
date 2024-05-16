@@ -42,4 +42,9 @@ awayTeamName = 'Cubs'
 
 
 ---Advanced SQL Query
+Provide the Games and their time, where attendance is above the average and time is above the average.
+SELECT gameId,homeTeamName, duration_minutes
+FROM `bigquery-public-data.baseball.schedules`
+WHERE attendance >= (SELECT AVG(attendance) FROM `bigquery-public-data.baseball.schedules`) AND duration_minutes >= (SELECT AVG(duration_minutes) FROM `bigquery-public-data.baseball.schedules`);
+
 
