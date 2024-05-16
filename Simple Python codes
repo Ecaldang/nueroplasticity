@@ -1,5 +1,5 @@
------Swapping Strings
-
+#Swapping Strings
+-----------
 v1 = "first string"
 v2 = "second string"
 
@@ -14,7 +14,7 @@ second string
 
 print(v2)
 first string
----- IF else statements and applications
+#IF else statements and applications
 e = 3
 f = 4
 if e < f:
@@ -23,13 +23,41 @@ elif e==f:
     print("e is eequal to f")
 else:
     print("e is greater than f")
---results : e is less than f
+#results : e is less than f
 
 
-----Combining Strings
-
+# Combining Strings
+-------
 name = "bro'
 Print = ("Hello" + name)
 Hello Bro
 
------
+# Creating a BMI calculator
+
+-------
+name = "John"
+height_m = 2
+weight_kg = 90
+
+# **= to the power of
+
+BMI = weight_kg / (height_m ** 2)
+print ("bmi:")
+print(bmi)
+if bmi < 25
+name = "John"
+height_m = 2
+weight_kg = 90
+
+# **= to the power of
+
+bmi = weight_kg / (height_m ** 2)
+print ("bmi:")
+print(bmi)
+if bmi < 25:
+    print(name)
+    print ("is not over weight")
+else:
+    print(name)
+    print ("is overweight")
+
