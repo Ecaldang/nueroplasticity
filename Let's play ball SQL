@@ -31,3 +31,15 @@ FROM `bigquery-public-data.baseball.schedules`
 WHERE duration_minutes > 184
 Group by homeTeamname
 ORDER by homeTeamName ASC;
+
+
+---- Locate IDs with particular home team condition's
+
+SELECT gameid, seasonId
+FROM `bigquery-public-data.baseball.schedules`
+WHERE homeTeamName = 'Padres'  AND 
+awayTeamName = 'Cubs'
+
+
+---Advanced SQL Query
+
