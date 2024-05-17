@@ -79,38 +79,3 @@ LIMIT 100;
 
 
 
----  advanced QUery for all subject above average scores and school , hence demonstrate top performing schools.
-With TRS as 
-(
-  SELECT 
-  School_Name,
-
-  Critical_Reading_Mean
-  FROM `CollegeExams.ExamResults`
-  WHERE Critical_Reading_Mean  > ( SELECT
-                                      avg(critical_reading_mean)
-                                    FROM `CollegeExams.ExamResults`)
-)
-SELECT *
-FROM TRS 
-JOIN 
-(SELECT 
-  Mathematics_Mean 
-  FROM `CollegeExams.ExamResults`
-  WHERE Mathematics_Mean  > ( SELECT
-
-                                  avg(Mathematics_Mean )
-                              FROM `CollegeExams.ExamResults`)) TMS
-                            
-
-ON TRS.critical_reading_mean = TMS.Mathematics_Mean
-JOIN
-(SELECT
-Writing_Mean
-  FROM `CollegeExams.ExamResults`
-  WHERE Writing_Mean  > ( SELECT
-
-                                  avg(Writing_Mean )
-                              FROM `CollegeExams.ExamResults`)) TMW
-                            ON TRS.critical_reading_mean = TMW.Writing_Mean
-LIMIT 100;
