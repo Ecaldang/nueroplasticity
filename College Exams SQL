@@ -73,9 +73,9 @@ JOIN
                                   avg(Mathematics_Mean )
                               FROM `CollegeExams.ExamResults`)) TMS
 ON TRS.School_Name = TMS.School_name
-LIMIT 100;
+LIMIT 10;
 
---- This prioritized data for top 100 performing schools for reading and math
+--- This prioritized data for top 10 performing schools for reading and math
 
 
 
