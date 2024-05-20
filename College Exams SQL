@@ -51,8 +51,7 @@ FROM `CollegeExams.ExamResults`)
 
 -----
 
-
-
+---CTE
 With TRS as 
 (
   SELECT 
@@ -64,7 +63,7 @@ With TRS as
 )
 SELECT *
 FROM TRS 
-JOIN 
+right jOIN 
 (SELECT
   School_Name, Mathematics_Mean 
   FROM `CollegeExams.ExamResults`
@@ -72,10 +71,13 @@ JOIN
 
                                   avg(Mathematics_Mean )
                               FROM `CollegeExams.ExamResults`)) TMS
-ON TRS.School_Name = TMS.School_name
+ON TRS.School_name= TMS.School_name
 LIMIT 10;
 
---- This prioritized data for top 10 performing schools for reading and math
+--- This prioritized data for top 10 performing school's avgs for reading and math.
+
+
+
 
 
 
