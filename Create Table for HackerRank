@@ -1,2 +1,15 @@
 ---// project link 
 -----https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem
+
+
+CREATE TABLE Submissions (
+Submission date not NULL,
+Submission_id INT,
+Hacker_id INT
+Score
+);
+
+Create table (
+Hacker_id INT,
+Name string
+);
