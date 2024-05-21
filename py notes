@@ -19,7 +19,7 @@ e = 3
 f = 4
 if e < f:
     print(" e is less than f")
-elif e==f:
+elif e==f
     print("e is eequal to f")
 else:
     print("e is greater than f")
@@ -60,4 +60,6 @@ if bmi < 25:
 else:
     print(name)
     print ("is overweight")
+
+
 
