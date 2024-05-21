@@ -2,14 +2,25 @@
 -----https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem
 
 
-CREATE TABLE Submissions (
+CREATE TABLE SubmissionsTable (
 Submission date not NULL,
 Submission_id INT,
 Hacker_id INT
 Score
 );
 
-Create table (
+
+
+Create table HackerTable(
 Hacker_id INT,
 Name string
 );
+
+
+Insert into SubmissionsTable (Submission_date, Submission_id,Hacker_id,Score)
+VALUES (,,,)
+
+
+
+
+
