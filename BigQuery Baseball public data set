@@ -41,7 +41,7 @@ WHERE homeTeamName = 'Padres'  AND
 awayTeamName = 'Cubs'
 
 
----Advanced SQL Query
+
 Provide the Games and their time, where attendance is above the average and time is above the average.
 SELECT gameId,homeTeamName, duration_minutes
 FROM `bigquery-public-data.baseball.schedules`
