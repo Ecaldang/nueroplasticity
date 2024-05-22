@@ -8,7 +8,7 @@ SELECT
 distinct homeTeamname
 FROM `bigquery-public-data.baseball.schedules`
 WHERE duration_minutes > 100;
-
+ 
 ---- Return the teams where duration of game more than 200, count how many of the games are greater than 200mins.
 
 Select 
