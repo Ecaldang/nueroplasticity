@@ -58,6 +58,16 @@ If more than one such hacker has a maximum number of submissions, print the lowe
 The query should print this information for each day of the contest, sorted by the date.
 
 
+SYntax for REcursive Query:
+
+WITH[RECURSIVE] CTEname AS
+(
+Select Query(non recrusive query or the BASE query)
+UNION[ALL]
+Select Query (Recursive query using CTEname[with a termination condition)
+)
+SELECT * from CTEname;
+
 
       
 
