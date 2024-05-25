@@ -1,8 +1,6 @@
 OMG this took so long 
 
-
--------- Explanations to be added after a nap
-
+------ recursive query
 with recursive CTE as
     (select submission,hacker_id
     FROM submissionstable
@@ -13,30 +11,30 @@ with recursive CTE as
     JOIN CTE on cte.hacker_id = submissionstable.hacker_id
     WHERE submissionstable.submission = (select min(submission)FROM submissionstable
                                         WHERE submission > CTE.submission)),
-CTEuniquehackers as
-(SELECT DISTINCT submission, count(1) as numofHackers
+CTEuniquehackers as            ------------WITH CLAUSE 1: for unique number ofhackers
+(SELECT DISTINCT submission, count(1) as numofHackers -----name the columm
 from CTE
 group by submission),
-CTEcount_subs AS
+CTEcount_subs AS ------------ WITH CLAUSE 2: count total submissions from each hacker
 (SELECT submission, hacker_id, count(1) as numofsubs 
 FROM submissionstable
 GROUP by submission, hacker_id ),
-CTEmax_subs as
+CTEmax_subs as ---------------WITH CLAUSE 3: max submissions count for each hacker 
 (SELECT submission, max(numofsubs) AS Maxsubs 
 FROM CTEcount_subs
 GROUP BY submission),
-CTEfinalhackers AS
-(SELECT  CTEcount_subs.submission, min(CTEcount_subs.hacker_id) AS hacker_id
+CTEfinalhackers AS --------------------WITH CLAUSE 4:  
+(SELECT  CTEcount_subs.submission, min(CTEcount_subs.hacker_id) AS hacker_id 
     FROM CTEcount_subs
-    JOIN CTEmax_subs
-    ON CTEmax_subs.submission = CTEcount_subs.submission
-    AND CTEmax_subs.maxsubs = CTEcount_subs.numofsubs
-    GROUP by CTEcount_subs.submission)
-SELECT DISTINCT CTEuniquehackers.submission, CTEuniquehackers.numofHackers, CTEfinalhackers.hacker_id, hackertable.names As HACKERNAME
+    JOIN CTEmax_subs -----------
+    ON CTEmax_subs.submission = CTEcount_subs.submission -------JOIN 1: join clause by date
+    AND CTEmax_subs.maxsubs = CTEcount_subs.numofsubs----------- JOIN 2: join clause 2 & 3 by counts
+    GROUP by CTEcount_subs.submission)----------grouping table by date
+SELECT DISTINCT CTEuniquehackers.submission, CTEuniquehackers.numofHackers, CTEfinalhackers.hacker_id, hackertable.names As HACKERNAME ----------FINAL column outputs
 FROM CTEuniquehackers
 JOIN CTEfinalhackers ON CTEfinalhackers.submission = CTEuniquehackers.submission
-JOIN hackertable ON Hackertable.hacker_id = CTEfinalhackers.hacker_id
-ORDER by CTEuniquehackers.Submission;
+JOIN hackertable ON Hackertable.hacker_id = CTEfinalhackers.hacker_id ------------join the hackertable to compute hacker name next to their ID
+ORDER by CTEuniquehackers.Submission; -----------------make sure to have it in order
 
 
 
