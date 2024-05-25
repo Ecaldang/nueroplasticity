@@ -71,9 +71,6 @@ Select Query (Recursive query using CTEname[with a termination condition)
 SELECT * from CTEname;
 
 
----- ADD JOIn for the 2nd part of problem
-
-      
 
 
 
