@@ -1,0 +1,42 @@
+OMG this took so long 
+
+
+-------- Explanations to be added after a nap
+
+with recursive CTE as
+    (select submission,hacker_id
+    FROM submissionstable
+    WHERE submission = (select min(submission)FROM submissionstable)
+    UNION
+    SELECT submissionstable.submission, submissionstable.hacker_id
+    FROM submissionstable
+    JOIN CTE on cte.hacker_id = submissionstable.hacker_id
+    WHERE submissionstable.submission = (select min(submission)FROM submissionstable
+                                        WHERE submission > CTE.submission)),
+CTEuniquehackers as
+(SELECT DISTINCT submission, count(1) as numofHackers
+from CTE
+group by submission),
+CTEcount_subs AS
+(SELECT submission, hacker_id, count(1) as numofsubs 
+FROM submissionstable
+GROUP by submission, hacker_id ),
+CTEmax_subs as
+(SELECT submission, max(numofsubs) AS Maxsubs 
+FROM CTEcount_subs
+GROUP BY submission),
+CTEfinalhackers AS
+(SELECT  CTEcount_subs.submission, min(CTEcount_subs.hacker_id) AS hacker_id
+    FROM CTEcount_subs
+    JOIN CTEmax_subs
+    ON CTEmax_subs.submission = CTEcount_subs.submission
+    AND CTEmax_subs.maxsubs = CTEcount_subs.numofsubs
+    GROUP by CTEcount_subs.submission)
+SELECT DISTINCT CTEuniquehackers.submission, CTEuniquehackers.numofHackers, CTEfinalhackers.hacker_id, hackertable.names As HACKERNAME
+FROM CTEuniquehackers
+JOIN CTEfinalhackers ON CTEfinalhackers.submission = CTEuniquehackers.submission
+JOIN hackertable ON Hackertable.hacker_id = CTEfinalhackers.hacker_id
+ORDER by CTEuniquehackers.Submission;
+
+
+
