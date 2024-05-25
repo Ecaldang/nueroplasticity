@@ -58,6 +58,8 @@ If more than one such hacker has a maximum number of submissions, print the lowe
 The query should print this information for each day of the contest, sorted by the date.
 
 
+Approach: Use recursive query and then use a join 
+
 SYntax for REcursive Query:
 
 WITH[RECURSIVE] CTEname AS
@@ -68,6 +70,8 @@ Select Query (Recursive query using CTEname[with a termination condition)
 )
 SELECT * from CTEname;
 
+
+---- ADD JOIn for the 2nd part of problem
 
       
 
